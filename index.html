@@ -1,39 +1,14 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>FCC Bronx — Design Variations</title>
-  <meta name="description" content="Three homepage directions for Fordham Community Church.">
-  <link rel="stylesheet" href="./shared/base.css">
-  <style>
-    :root{--bg:#f2efe7;--fg:#111;--accent:#21469a}
-    body{min-height:100vh;background:var(--bg)}
-    main{max-width:1200px;margin:auto;padding:clamp(28px,6vw,88px)}
-    .eyebrow{font:700 12px/1 var(--font-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
-    h1{font-size:clamp(48px,9vw,128px);line-height:.86;letter-spacing:-.055em;margin:22px 0 40px;max-width:10ch}
-    .intro{max-width:660px;font-size:clamp(18px,2vw,24px);margin-bottom:64px}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    .card{border:1px solid #111;min-height:360px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .35s var(--ease-out),box-shadow .35s var(--ease-out);background:rgba(255,255,255,.35)}
-    .card:hover{transform:translateY(-8px);box-shadow:8px 8px 0 #111}
-    .num{font:600 12px/1 var(--font-mono);letter-spacing:.12em}
-    .card h2{font-size:clamp(30px,4vw,52px);line-height:.95;letter-spacing:-.04em;margin:22px 0 12px}
-    .card p{max-width:28ch;color:#444}
-    .go{display:inline-flex;align-items:center;gap:10px;margin-top:30px;font:700 12px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase}
-    .go::after{content:"↗";font-size:18px}
-    @media(max-width:760px){.grid{grid-template-columns:1fr}.card{min-height:280px}}
-  </style>
-</head>
-<body>
-  <main>
-    <div class="eyebrow">Fordham Community Church · Bronx, NY</div>
-    <h1>Three directions. One church.</h1>
-    <p class="intro">Live prototypes for comparing the FCC Bronx homepage directions. Each page is responsive, interactive, and uses the church’s Sunday information and photography.</p>
-    <section class="grid" aria-label="Design variations">
-      <a class="card" href="./01/"><span class="num">01 / BULLETIN</span><div><h2>Bronx Bulletin</h2><p>Blue ink, warm paper, oversized condensed type, service-information blocks.</p><span class="go">Open variation</span></div></a>
-      <a class="card" href="./02/"><span class="num">02 / CINEMATIC</span><div><h2>Sunday in Motion</h2><p>Full-bleed worship photography, lime accent, bold direct copy and tactile motion.</p><span class="go">Open variation</span></div></a>
-      <a class="card" href="./03/"><span class="num">03 / EDITORIAL</span><div><h2>Quiet Welcome</h2><p>Serif editorial typography, generous space, rust accent and an inviting split hero.</p><span class="go">Open variation</span></div></a>
-    </section>
-  </main>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Fordham Community Church — a church of the Bronx, for the Bronx." />
+    <meta name="theme-color" content="#f3eee4" />
+    <title>Fordham Community Church · The Bronx</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

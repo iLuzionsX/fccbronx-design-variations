@@ -1,2 +1,7 @@
 node_modules/
+dist/
+implementation-*.png
+implementation-*.jpg
+source-normalized.jpg
+design-comparison.jpg
 .DS_Store

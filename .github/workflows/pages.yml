@@ -1,4 +1,4 @@
-name: Deploy FCC Variations
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -15,33 +15,30 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/client
+
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    needs: build
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Stage static site
-        run: |
-          set -euo pipefail
-          mkdir -p dist
-          cp index.html dist/
-          cp -r shared dist/
-          cp -r 01 dist/
-          cp -r 02 dist/
-          cp -r 03 dist/
-          touch dist/.nojekyll
-
-      - uses: actions/configure-pages@v5
-        with:
-          enablement: true
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
