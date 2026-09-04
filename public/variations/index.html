@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FCC Bronx — Three design directions</title>
+  <meta name="description" content="Three website design variations for Fordham Community Church (fccbronx.org), in the design language of Virgil Abloh." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@700;900&family=Caveat:wght@500;600&family=Inter:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./shared/base.css" />
+  <style>
+    body {
+      padding: clamp(1.5rem, 4vw, 3rem) var(--gutter) 4rem;
+    }
+
+    .head {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: end;
+      gap: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--ink);
+      margin-bottom: clamp(2rem, 5vw, 4rem);
+    }
+
+    .head__mark {
+      width: clamp(72px, 9vw, 128px);
+      align-self: start;
+    }
+
+    .head h1 {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.5rem, 7vw, 6rem);
+      letter-spacing: -0.045em;
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+
+    .head h1 .script {
+      font-size: 0.55em;
+      color: var(--ink-soft);
+    }
+
+    .head p {
+      max-width: 44ch;
+      margin-top: 1rem;
+      color: var(--ink-soft);
+    }
+
+    .head .mono {
+      font-size: 0.65rem;
+      text-align: right;
+      color: var(--ink-soft);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--ink);
+      border: 1px solid var(--ink);
+    }
+
+    .card {
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 1rem;
+      background: var(--paper);
+      padding: 1.25rem 1.25rem 1.5rem;
+      transition: background 0.2s;
+    }
+
+    .card:hover {
+      background: var(--paper-deep);
+    }
+
+    .card__media {
+      position: relative;
+      border: 1px solid var(--ink);
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+    }
+
+    .card__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(1) sepia(0.25) hue-rotate(185deg) saturate(0.8) contrast(1.05);
+    }
+
+    .card__media span {
+      position: absolute;
+      left: 0.75rem;
+      bottom: 0.75rem;
+      padding: 0.4rem 0.6rem;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .card__media .illo {
+      position: absolute;
+      right: 0.75rem;
+      top: 0.75rem;
+      width: 22%;
+      color: var(--paper);
+    }
+
+    /* V2: cream duotone on ink */
+    .card--v2 .card__media {
+      background: var(--paper);
+    }
+
+    .card--v2 .card__media img {
+      mix-blend-mode: multiply;
+    }
+
+    /* V3: plate on paper, rubric label */
+    .card--v3 .card__media {
+      padding: 1rem;
+    }
+
+    .card--v3 .card__media span {
+      background: #9a3b2c;
+      left: 1.5rem;
+      bottom: 1.5rem;
+    }
+
+    .card--v3 .card__media .illo {
+      color: var(--ink);
+    }
+
+    .card__meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.62rem;
+      color: var(--ink-soft);
+    }
+
+    .card h2 {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(1.5rem, 2.4vw, 2rem);
+      letter-spacing: -0.035em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .card p {
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+    }
+
+    .card ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .card li {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 0.5rem;
+      border: 1px solid var(--ink);
+    }
+
+    .card .btn {
+      display: inline-flex;
+      gap: 0.6em;
+      justify-self: start;
+      padding: 0.85rem 1.2rem;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .card .btn:hover {
+      background: var(--ink-soft);
+    }
+
+    .foot {
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--ink);
+      font-size: 0.62rem;
+      color: var(--ink-soft);
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    @media (max-width: 960px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .head {
+        grid-template-columns: 1fr;
+      }
+
+      .head__mark {
+        width: 64px;
+      }
+
+      .head .mono {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="head">
+    <svg class="illo head__mark" aria-hidden="true" focusable="false"><use href="./shared/illustrations.svg#mark-solid"></use></svg>
+    <div>
+      <h1><span class="q">FCC Bronx</span><br />× 3 <span class="script">know · live · love</span></h1>
+      <p>Three website directions for Fordham Community Church, each built in the design language of Virgil Abloh — quotation marks, industrial labels, billboard type — and drawn in the church's own hand: navy ink on cream paper, line illustrations, the FCC mark.</p>
+    </div>
+    <p class="mono">Design study &nbsp;/&nbsp; c. <span data-year>2026</span><br />Source: fccbronx.org</p>
+  </header>
+
+  <main class="grid">
+    <a class="card card--v1" href="./v1-off-white/index.html">
+      <span class="card__media">
+        <img src="https://images.squarespace-cdn.com/content/v1/5ab3bdf555b02c3e0c6273f1/1647029045117-XKAPA69W832U50F8C8QB/FCC+Photos-27.jpg?format=1000w" alt="Congregation singing during Sunday worship, shown in ink-toned monochrome" width="1500" height="1012" loading="lazy" />
+        <svg class="illo" aria-hidden="true" focusable="false"><use href="./shared/illustrations.svg#dove"></use></svg>
+        <span>"Church" for the Bronx</span>
+      </span>
+      <span class="card__meta mono"><span>Variation 01</span><span>Light</span></span>
+      <h2><span class="q">Off-White</span></h2>
+      <p>The purest read of the Abloh vocabulary, printed on paper. Cream ground, navy type at billboard scale, quoted labels, ink hazard stripes, a skyline drawn under the hero. Warm and loud.</p>
+      <ul><li>Paper + ink</li><li>Line-art values</li><li>Spec-sheet table</li></ul>
+      <span class="btn">Open V1 <span aria-hidden="true">→</span></span>
+    </a>
+
+    <a class="card card--v2" href="./v2-safety-orange/index.html">
+      <span class="card__media">
+        <img src="https://images.squarespace-cdn.com/content/v1/5ab3bdf555b02c3e0c6273f1/1775860353947-5SSLGR2TODN6DRU5Y1LJ/image-asset.jpeg?format=1000w" alt="Pastor speaking from the stage, shown as a cream duotone" width="1500" height="850" loading="lazy" />
+        <svg class="illo" aria-hidden="true" focusable="false"><use href="./shared/illustrations.svg#train"></use></svg>
+        <span>Lot No. 10468</span>
+      </span>
+      <span class="card__meta mono"><span>Variation 02</span><span>Dark</span></span>
+      <h2><span class="q">Ink</span></h2>
+      <p>The industrial edge, printed in reverse. Navy-ink ground, cream line drawings and type, monospace metadata, a shipping-label grid and departure-board service times. Photography runs as cream duotone.</p>
+      <ul><li>Dark mode</li><li>Duotone</li><li>Index numbers</li></ul>
+      <span class="btn">Open V2 <span aria-hidden="true">→</span></span>
+    </a>
+
+    <a class="card card--v3" href="./v3-figures-of-speech/index.html">
+      <span class="card__media">
+        <img src="https://images.squarespace-cdn.com/content/v1/5ab3bdf555b02c3e0c6273f1/01b9c817-ffb6-41db-a00c-a17ea2b9c872/Church+2-6.jpg?format=1000w" alt="Church members talking together after the service, presented as a gallery plate" width="1500" height="1000" loading="lazy" />
+        <svg class="illo" aria-hidden="true" focusable="false"><use href="./shared/illustrations.svg#branch"></use></svg>
+        <span>Plate 01</span>
+      </span>
+      <span class="card__meta mono"><span>Variation 03</span><span>Paper</span></span>
+      <h2><span class="q">Figures of Speech</span></h2>
+      <p>The museum catalogue. Paper ground, a rubric-red numbering system, photographs hung as numbered plates with wall-label captions, footnotes, and a line drawing at the head of each section. Quiet and spacious.</p>
+      <ul><li>Editorial</li><li>Plates &amp; captions</li><li>Footnotes</li></ul>
+      <span class="btn">Open V3 <span aria-hidden="true">→</span></span>
+    </a>
+  </main>
+
+  <footer class="foot mono">
+    <span>All content and photography from fccbronx.org. Static HTML/CSS; no build step.</span>
+    <span><span class="q">Made in the Bronx</span></span>
+  </footer>
+
+  <script src="./shared/site.js" defer></script>
+</body>
+</html>
