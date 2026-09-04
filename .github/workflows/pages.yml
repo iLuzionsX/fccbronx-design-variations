@@ -24,7 +24,8 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
-      - run: npm run build
+      - name: Build for project Pages
+        run: npx vite build --base=/fccbronx-design-variations/ --outDir=dist/client
       - uses: actions/configure-pages@v5
         with:
           enablement: true
