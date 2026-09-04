@@ -13,13 +13,22 @@
 :root {
   /* Abloh-era type stack: Helvetica first, Inter as the web fallback. */
   --font-sans: "Helvetica Neue", Helvetica, Inter, Arial, sans-serif;
+  --font-display: "Inter Tight", "Helvetica Neue", Helvetica, Inter, Arial, sans-serif;
   --font-mono: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  /* brush script used for the hand-lettered "know / live / love" */
+  --font-script: "Caveat", "Segoe Script", cursive;
 
-  --bg: #ffffff;
-  --fg: #000000;
-  --muted: #666666;
-  --line: #000000;
-  --accent: #ff5a00;
+  /* the church's print vocabulary: navy ink on cream paper */
+  --paper: #f2ebdf;
+  --paper-deep: #e6dccb;
+  --ink: #1c2540;
+  --ink-soft: #5b6178;
+
+  --bg: var(--paper);
+  --fg: var(--ink);
+  --muted: var(--ink-soft);
+  --line: var(--ink);
+  --accent: var(--ink);
 
   --gutter: clamp(16px, 4vw, 48px);
   --max: 1440px;
@@ -45,12 +54,48 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Paper grain: an SVG turbulence tile, multiplied over everything.
+   pointer-events: none keeps it out of the way of interaction. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 950;
+  pointer-events: none;
+  opacity: 0.32;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.5 0 0 0 0 0.45 0 0 0 0.55 0'/></filter><rect width='240' height='240' filter='url(%23g)'/></svg>");
+  background-size: 240px 240px;
+}
+
 img,
 picture,
 video {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+/* Line-art illustrations from shared/illustrations.svg.
+   <svg class="illo"><use href="../shared/illustrations.svg#dove"/></svg> */
+.illo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  color: inherit;
+  overflow: visible;
+}
+
+.illo--wide {
+  aspect-ratio: 320 / 200;
+}
+
+.script {
+  font-family: var(--font-script);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
 }
 
 h1,
@@ -208,8 +253,8 @@ button {
   display: flex;
   gap: 2px;
   padding: 3px;
-  background: #000;
-  border: 1px solid #fff;
+  background: var(--ink);
+  border: 1px solid var(--paper);
   font-family: var(--font-mono);
   font-size: 0.65rem;
   letter-spacing: 0.08em;
@@ -219,15 +264,15 @@ button {
 .variant-switch a {
   display: block;
   padding: 0.5rem 0.7rem;
-  color: #fff;
-  background: #000;
+  color: var(--paper);
+  background: var(--ink);
   transition: background 0.2s, color 0.2s;
 }
 
 .variant-switch a:hover,
 .variant-switch a[aria-current="page"] {
-  background: #fff;
-  color: #000;
+  background: var(--paper);
+  color: var(--ink);
 }
 
 /* --------------------------------------------------------------------------
