@@ -24,8 +24,17 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
-      - name: Build for project Pages
+      - name: Build main site for project Pages
         run: npx vite build --base=/fccbronx-design-variations/ --outDir=dist/client
+      - name: Include all standalone design variations
+        run: |
+          cp -R shared dist/client/shared
+          cp -R 01 dist/client/01
+          cp -R 02 dist/client/02
+          cp -R 03 dist/client/03
+          cp -R v1-off-white dist/client/v1-off-white
+          cp -R v2-safety-orange dist/client/v2-safety-orange
+          cp -R v3-figures-of-speech dist/client/v3-figures-of-speech
       - uses: actions/configure-pages@v5
         with:
           enablement: true
