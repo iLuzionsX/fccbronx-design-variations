@@ -228,7 +228,7 @@ export function App() {
     node.style.setProperty("--pointer-y", y.toFixed(3));
   };
 
-  return <div id="top" className="site-frame">
+  return <div id="top" className="site-frame" style={{ "--paper-texture": `url(${asset("paper-texture.png")})` }}>
     <Header active={active} progress={progress} onVisit={() => setVisitOpen(true)} />
     <main>
       <section id="sundays" className="hero" aria-labelledby="hero-title" ref={heroRef} onPointerMove={onHeroPointer}>
